@@ -34,3 +34,5 @@ echo "OK_FILE_NAME" | nc $CLIENT_IP $CLIENT_PORT
 message=$(nc -l $SERVER_PORT)
 
 echo $message >> $FILE_NAME
+
+exit 0 # Sortida satisfactòria (sense errors)
