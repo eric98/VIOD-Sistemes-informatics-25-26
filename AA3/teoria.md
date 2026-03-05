@@ -129,12 +129,12 @@ https://www.reddit.com/r/linux/comments/ayditr/chmod_cheatsheet/
 TODO
 
 (exercici)
-- Crea 1 grup (parxís) i 4 usuaris (u1, u2, u3 i u4).
-- Crea una carpeta (projecte) a /var.
-- Assigna u3 com a usuari propietari de la carpeta i parxís com a grup propietari de la carpeta. Comprova el resultat amb ls -l.
-- Elimina els permisos de lectura i execució a projecte a la  resta d'usuaris. Comprova el resultat amb ls -l.
-- Comprova que u3 pot crear arxius dins de projecte.
-- Comprova que u2 no pot crear arxius dins de projecte.
+- Crea 1 grup (prototip) i 4 usuaris (u1, u2, u3 i u4).
+- Crea una carpeta (prototip) a /var.
+- Assigna u3 com a usuari propietari de la carpeta i prototip com a grup propietari de la carpeta. Comprova el resultat amb ls -l.
+- Elimina els permisos de lectura i execució a prototip a la  resta d'usuaris. Comprova el resultat amb ls -l.
+- Comprova que u3 pot crear arxius dins de prototip.
+- Comprova que u2 no pot crear arxius dins de prototip.
 
 Bloc 7 --  Sistemes de fitxers i Formatejos
 - Conceptes sectors i blocs
