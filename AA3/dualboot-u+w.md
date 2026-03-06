@@ -43,23 +43,21 @@ La **reparació del conflicte** es basa en reinstal·lar el GRUB, detectar tots 
 
 ## 1. Configurar màquina virtual
 
-Configurem la màquina virtual:
-- Afegim iso d'Ubuntu
+Afegim iso d'Ubuntu
 ![Pas 1 iso](./imatges/1-iso.JPG)
 
-- Afegim 4GB de RAM i 2 nuclis de processador
-- Establim el mode BIOS (deixem desmarcada l'opció EFI)
+Afegim 4GB de RAM i 2 nuclis de processador i establim el mode BIOS (deixem desmarcada l'opció EFI)
 ![Pas 2 hardware](./imatges/2-hardware.JPG)
 
-- Deixem suficient espai per poder instal·lar Ubuntu i Windows 10 (per exemple 80 GB)
+Deixem suficient espai per poder instal·lar Ubuntu i Windows 10 (per exemple 80 GB)
 ![Pas 3 discdur](./imatges/3-discdur.JPG)
 
 ## 2. Particions a Ubuntu
 
-- Accedim al menú de crear particions
+Accedim al menú de crear particions
 ![Pas 4 installaciomanual](./imatges/4-installaciomanual.JPG)
 
-- Fem clic a "Taula de particions nova" per a crear una nova partició
+Fem clic a "Taula de particions nova" per a crear una nova partició
 ![Pas 5 menuparticions](./imatges/5-menuparticions.JPG)
 
 - Es crea una partició d'1MB automàticament. Aquesta és necessària per TODO
