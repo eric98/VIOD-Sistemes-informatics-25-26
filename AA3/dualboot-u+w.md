@@ -17,7 +17,7 @@
 | ------ | ----- |
 | ![BIOS d'un PC estàndard](https://upload.wikimedia.org/wikipedia/commons/0/05/Award_BIOS_setup_utility.png) | ![UEFI BIOS d'un PC](https://img.pccomponentes.com/pcblog/1684101600000/uefi-bios-2.jpg) |
 
-### 0.2 Índex de particions (antiga MBR -> nova GPT)
+### 0.2 Índex de particions (antiga MBR, nova GPT)
 És una estructura que defineix on comença i acaba cada partició. L'antiga MBR només permetia 4 particions i discos fins a 2TB. Actualment està substituïda per la GPT que permet fins a 128 particions i discs de fins a 9.4ZB, limits gairebé inexistents. ($9.4ZB = 9.4TB \times 10^{9}$).
 
 | | BIOS d'un PC estàndard | UEFI BIOS d'un PC |
@@ -43,63 +43,138 @@ La **reparació del conflicte** es basa en reinstal·lar el GRUB, detectar tots 
 
 ## 1. Configurar màquina virtual
 
-Afegim iso d'Ubuntu
-![Pas 1 iso](./imatges/1-iso.JPG)
+1. Afegim iso d'Ubuntu
 
-Afegim 4GB de RAM i 2 nuclis de processador i establim el mode BIOS (deixem desmarcada l'opció EFI)
-![Pas 2 hardware](./imatges/2-hardware.JPG)
+![Pas 1 iso](./imatges/1-iso.JPG "Afegir iso d'Ubuntu")
 
-Deixem suficient espai per poder instal·lar Ubuntu i Windows 10 (per exemple 80 GB)
-![Pas 3 discdur](./imatges/3-discdur.JPG)
+2. Afegim 4GB de RAM i 2 nuclis de processador i establim el mode BIOS (deixem desmarcada l'opció EFI)
+
+![Pas 2 hardware](./imatges/2-hardware.JPG "Configurar el hardware")
+
+3. Deixem suficient espai per poder instal·lar Ubuntu i Windows 10 (per exemple 80 GB)
+
+![Pas 3 discdur](./imatges/3-discdur.JPG "Configurar el disc dur")
 
 ## 2. Particions a Ubuntu
 
-Accedim al menú de crear particions
-![Pas 4 installaciomanual](./imatges/4-installaciomanual.JPG)
+4. Accedim al menú de crear particions
 
-Fem clic a "Taula de particions nova" per a crear una nova partició
-![Pas 5 menuparticions](./imatges/5-menuparticions.JPG)
+![Pas 4 installaciomanual](./imatges/4-installaciomanual.JPG "Accedir al menú de crear particions")
 
-- Es crea una partició d'1MB automàticament. Aquesta és necessària per TODO
-![Pas 6 dispositiuparticions](./imatges/6-dispositiuparticions.png)
+5. Fem clic a "Taula de particions nova" per a crear una nova partició
 
-- Definim particions per separat permet assegurar que si una partició falla, no afecta a les altres. Per exemple, reinstal·lar el sistema operatiu no afecta a les dades guardades a /home, o malmetre la /home no afecta a la resta del sistema operatiu:
-    - **(partició buida d'1MB)**: TODO
-    - **Arrel (/)**: On s'instal·la el sistema operatiu. Ext4 - 20 GB d'espai.
-    - **Home (/home)**: On es guarden les dades personals de cada usuari. Ext4 - 10 GB d'espai.
-    - **Àrea d'intercanvi (Swap)**: Espai del disc que s'utilitza com a memòria virtual quan la memòria RAM està plena. 4 GB d'espai.
-    - **Partició del sistema EFI (/boot/efi)**: On es troben els programes que gestionen l'arrencada en sistemes moderns amb UEFI, com Windows. Utilitzem VFAT perquè és compatible amb Windows. 512 MB d'espai.
-![Pas 7 menunovaparticio](./imatges/7-menunovaparticio.png)
+![Pas 5 menuparticions](./imatges/5-menuparticions.JPG "Crear una nova partició")
 
-![Pas 8 particionsdefinides](./imatges/8-particionsdefinides.png)
-![Pas 9 resumparticions](./imatges/9-resumparticions.png)
-![Pas 10 lsblk](./imatges/10-lsblk.png)
+6. Es crea una partició d'1MB automàticament. Aquesta és necessària per a permetre que GRUB s’instal·li correctament en discs GPT quan el sistema arrenca en mode BIOS.
+
+![Pas 6 dispositiuparticions](./imatges/6-dispositiuparticions.png "Es crea una partició buida")
+
+7. Definim particions per separat permet assegurar que si una partició falla, no afecta a les altres. Per exemple, reinstal·lar el sistema operatiu no afecta a les dades guardades a /home, o malmetre la /home no afecta a la resta del sistema operatiu:
+- **(partició buida d'1MB)**: Partició imprescindible i generada automàticament que utilitza el GRUB per a arrencar en sistemes GPT amb mode BIOS. No té sistema de fitxers i és creada automàticament per algunes distribucions.
+- **Arrel (/)**: On s'instal·la el sistema operatiu. Ext4 - 20 GB d'espai.
+- **Home (/home)**: On es guarden les dades personals de cada usuari. Ext4 - 10 GB d'espai.
+- **Àrea d'intercanvi (Swap)**: Espai del disc que s'utilitza com a memòria virtual quan la memòria RAM està plena. 4 GB d'espai.
+- **Partició del sistema EFI (/boot/efi)**: On es troben els programes que gestionen l'arrencada en sistemes moderns amb UEFI, com Windows. Utilitzem VFAT perquè és compatible amb Windows. 512 MB d'espai.
+
+![Pas 7 menunovaparticio](./imatges/7-menunovaparticio.png "Menú nova partició a Ubuntu")
+
+8. Definim les particions
+
+![Pas 8 particionsdefinides](./imatges/8-particionsdefinides.png "Particions definides")
+
+9. Resum de les particions
+
+![Pas 9 resumparticions](./imatges/9-resumparticions.png "Resum de les particions")
+
+10. Comprovació de les particions creades
+- loopN són dispositius virtuals que utilitzen alguns programes per a millorar la seguretat, entre altres
+
+![Pas 10 lsblk](./imatges/10-lsblk.png "Particions definides")
 
 ## 3. Preparar instal·lació de Windows
-![Pas 11 activarefi](./imatges/11-activarefi.JPG)
-![Pas 12 afegirisowindows](./imatges/12-afegirisowindows.JPG)
 
-TODO explicar que per a una instal·lació sense les funcionalitats online de microsoft, com el correu, es pot desactivar internet de la màquina virtual
-![extra2-notincinternet](./imatges/extra2-notincinternet.png)
+11. Activem efi "Enable EFI (special OSes only)" per a poder instal·lar Windows 10.
+
+![Pas 11 activarefi](./imatges/11-activarefi.JPG "Activació EFI")
+
+12. Extraiem la ISO d'Ubuntu i afegim la de Windows 10.
+
+![Pas 12 afegirisowindows](./imatges/12-afegirisowindows.JPG "Afegir ISO Windows")
+
+***Extra**: existeixen diverses maneres de saltar-se el control de Microsoft quan pregunta per el correu. Una d'aquestes és desconnectar l'adaptador de xarxa a VirtualBox i tornar-li a activar una vegada el SO ja s'hagi acabat d'instal·lar.*
+
+| Desconnexió d'adaptador de xarxa a VirtualBox | Microsoft permet saltar-se tota la comprovació inicial |
+| ------ | ----- |
+| ![Música desconnectada](./imatges/extra-desactivarinternet.JPG) | ![Música desconnectada](./imatges/extra2-notincinternet.png)
 
 ## 4. Particions a Windows
-![Pas 13 installaciomanual](./imatges/13-installaciomanual.JPG)
-![Pas 14 novaparticio](./imatges/14-novaparticio.png)
-![Pas 15 particions](./imatges/15-particions.png)
-![Pas 16.1 paneldecontrol](./imatges/16-1-paneldecontrol.png)
-![Pas 16.2 administraciondediscos](./imatges/16-2-administraciondediscos.png)
+
+13. A Windows també podem escollir quines particions volem.
+
+![Pas 13 installaciomanual](./imatges/13-installaciomanual.JPG "Definició particions a Windows")
+
+14. Menú de fer particions a Windows
+
+![Pas 14 novaparticio](./imatges/14-novaparticio.png "Menú de creació de particions a Windows")
+
+15. Hem passat de 5 partions a 8 particions. Windows en genera 3 automàticament per facilitar la gestió del sistema operatiu.
+
+![Pas 15 particions](./imatges/15-particions.png "Particions definides")
+
+16. Des del *Panel de Control* podem accedir a _Administación de discos_ i veure quines particions hi ha al disc dur actual.
+
+![Pas 16.1 paneldecontrol](./imatges/16-1-paneldecontrol.png "Accedir a Administración de discos")
+
+17. Resum de particions a _Administación de discos_
+
+![Pas 17 administraciondediscos](./imatges/16-2-administraciondediscos.png "Particions disponibles a Windows")
 
 ## 5. Accedir a Ubuntu
-![Pas 17 afegirisosupergrub](./imatges/17-afegirisosupergrub.JPG)
-![Pas 18 accedirbootmanager](./imatges/18-accedirbootmanager.JPG)
-![Pas 19 arranquemuefivbox](./imatges/19-arranquemuefivbox.JPG)
-![Pas 20 detectarubuntu](./imatges/20-detectarubuntu.JPG)
-![Pas 21 arrancarubuntu](./imatges/21-arrancarubuntu.JPG)
+
+18. En aquest punt, Windows ha sobreescrit la prioritat a la NVRAM i, per tant, sempe es carregarà el Windows Boot Manager. Haurem d'afegir la ISO supergrub2, accedir a Ubuntu i reinstal·lar la grub. Inserim el disc.
+
+![Pas 18 afegirisosupergrub](./imatges/17-afegirisosupergrub.JPG "Afegir ISO supergrub2")
+
+19. Amb "ESC" hem de carregar la BIOS de la màquina virtual i seleccionar que es carregi el Boot Manager.
+
+![Pas 19 accedirbootmanager](./imatges/18-accedirbootmanager.JPG "Prémer ESC per a accedir a la BIOS de la màquina virtual")
+
+20. Podem carregar la ISO de supergrub2 mitjançant carregar la lectura UWFI VBOX CD-ROM 
+
+![Pas 20 arranquemuefivbox](./imatges/19-arranquemuefivbox.JPG "Iniciar la màquina virtual amb la informació del CD-ROM")
+
+21. Podem escanejar els Sistemes Opeatius que hi ha al nostre disc dur i carregar Ubuntu.
+
+![Pas 21 detectarubuntu](./imatges/20-detectarubuntu.JPG "Escanejar els altres SO a l'ordinar")
+
+22. Iniciem Ubuntu.
+
+23. ![Pas 22 arrancarubuntu](./imatges/21-arrancarubuntu.JPG "S'ha trobat el SO Ubuntu")
 
 ## 6. Reparació del grub
-![Pas 22 lsblk](./imatges/22-lsblk.png)
-![Pas 23 canviarmotordelgrub](./imatges/23-canviarmotordelgrub.png)
-![Pas 24 installarcarregadoranvram](./imatges/24-installarcarregadoranvram.png)
-![Pas 25 editarfitxergrub](./imatges/25-editarfitxergrub.png)
-![Pas 26 actualitzarmenugrub](./imatges/26-actualitzarmenugrub.png)
-![Pas 27 final-gnugrub](./imatges/27-final-gnugrub.png)
+
+24. Aquest últim bloc tracta de la reinstal·lació del GRUB.
+
+La partició /dev/sda5 està al dispositiu /dev/sda (necessari identificar-lo).
+
+![Pas 23 lsblk](./imatges/22-lsblk.png "Particions disponibles a Ubuntu")
+
+25. El paquet grub-efi-amd64-signed conté els arxius del GRUB per a sistemes UEFI.
+
+![Pas 24 canviarmotordelgrub](./imatges/23-canviarmotordelgrub.png "Instal·lació del paquet grub-efi-amd64-signed")
+
+26. Reinstal·lem el GRUB al disc (dispositiu /dev/sda)
+
+![Pas 25 installarcarregadoranvram](./imatges/24-installarcarregadoranvram.png "Reinstal·lació del GRUB")
+
+27. Permetem que GRUB detecti altres sistemes operatius
+
+![Pas 26 editarfitxergrub](./imatges/25-editarfitxergrub.png "Escaneig de l'ordinador en busca de SO instal·lats")
+
+28. Actualitzem la configuració del GRUB
+
+![Pas 27 actualitzarmenugrub](./imatges/26-actualitzarmenugrub.png "Actualització de la configuració del GRUB")
+
+29. El GRUB s’ha reinstal·lat correctament i ja podem seleccionar entre Ubuntu i Windwos.
+
+![Pas 28 final-gnugrub](./imatges/27-final-gnugrub.png "GRUB funciona")
