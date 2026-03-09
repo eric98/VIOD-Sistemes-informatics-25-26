@@ -274,7 +274,7 @@ $ chmod o-rx {fitxer}
 
 [Exercici 5 - Gestió d'usuaris, grups i permisos](exercicis.md#exercici-5---gestió-dusuaris-grups-i-permisos "exercici5")
 
-## 7. Sistemes de fitxers i Formatacions
+## 7. Sistemes de fitxers
 ### Conceptes previs
 
 - ***Sector***: Unitat física mínima de lectura/escriptura en un disc dur. És una divisió física al hardware. En els SSD, els sectors són simulats ja que no tenen una limitació física real (lectura/escriptura per seccions de bits). *Vídeo on es veu què és un sector a un HDD: https://www.youtube.com/watch?v=n6uPALWAyxc*
