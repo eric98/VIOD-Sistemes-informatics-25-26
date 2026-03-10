@@ -6,7 +6,7 @@
 4. [Usuaris](#4-usuaris)  
 5. [Grups](#5-grups)  
 6. [Gestió de permisos](#6-gestió-de-permisos)  
-7. [Sistemes de fitxers i formatejos](#7-sistemes-de-fitxers-i-formatejos)
+7. [Sistemes de fitxers](#7-sistemes-de-fitxers)
 
 ## 1. Sistema d'arxius i particions
 
