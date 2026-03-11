@@ -1,7 +1,7 @@
 # AA3. Implantació de programari específic
 
 1. [Sistema d'arxius i particions](#1-sistema-darxius-i-particions)  
-2. [Gestor d'arrencada i Dual Boot](#2-gestor-darrencada-i-dual-boot)  
+2. [Gestor d'arranc i Dual Boot](#2-gestor-darranc-i-dual-boot)  
 3. [Gestors de paquets](#3-gestors-de-paquets)  
 4. [Usuaris](#4-usuaris)  
 5. [Grups](#5-grups)  
