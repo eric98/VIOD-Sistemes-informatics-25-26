@@ -149,32 +149,32 @@ La **reparació del conflicte** es basa en reinstal·lar el GRUB, detectar tots 
 
 22. Iniciem Ubuntu.
 
-23. ![Pas 22 arrancarubuntu](./imatges/21-arrancarubuntu.JPG "S'ha trobat el SO Ubuntu")
+![Pas 22 arrancarubuntu](./imatges/21-arrancarubuntu.JPG "S'ha trobat el SO Ubuntu")
 
 ## 6. Reparació del grub
 
-24. Aquest últim bloc tracta de la reinstal·lació del GRUB.
+23. Aquest últim bloc tracta de la reinstal·lació del GRUB.
 
 La partició /dev/sda5 està al dispositiu /dev/sda (necessari identificar-lo).
 
 ![Pas 23 lsblk](./imatges/22-lsblk.png "Particions disponibles a Ubuntu")
 
-25. El paquet grub-efi-amd64-signed conté els arxius del GRUB per a sistemes UEFI.
+24. El paquet grub-efi-amd64-signed conté els arxius del GRUB per a sistemes UEFI.
 
 ![Pas 24 canviarmotordelgrub](./imatges/23-canviarmotordelgrub.png "Instal·lació del paquet grub-efi-amd64-signed")
 
-26. Reinstal·lem el GRUB al disc (dispositiu /dev/sda)
+25. Reinstal·lem el GRUB al disc (dispositiu /dev/sda)
 
 ![Pas 25 installarcarregadoranvram](./imatges/24-installarcarregadoranvram.png "Reinstal·lació del GRUB")
 
-27. Permetem que GRUB detecti altres sistemes operatius
+26. Permetem que GRUB detecti altres sistemes operatius
 
 ![Pas 26 editarfitxergrub](./imatges/25-editarfitxergrub.png "Escaneig de l'ordinador en busca de SO instal·lats")
 
-28. Actualitzem la configuració del GRUB
+27. Actualitzem la configuració del GRUB
 
 ![Pas 27 actualitzarmenugrub](./imatges/26-actualitzarmenugrub.png "Actualització de la configuració del GRUB")
 
-29. El GRUB s’ha reinstal·lat correctament i ja podem seleccionar entre Ubuntu i Windwos.
+28. El GRUB s’ha reinstal·lat correctament i ja podem seleccionar entre Ubuntu i Windwos.
 
 ![Pas 28 final-gnugrub](./imatges/27-final-gnugrub.png "GRUB funciona")
